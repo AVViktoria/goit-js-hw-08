@@ -8,10 +8,10 @@ const refs = {
   inputFormMessage: document.querySelector('[name="message"]'),
   inputFormSubmitBtn: document.querySelector('[type="submit"]'),
 };
-
+populateTextarea();
 refs.inputFormFeedback.addEventListener('submit', onFormSubmit);
 refs.inputFormFeedback.addEventListener('input', throttle(onInputStorage, 500));
-populateTextarea();
+
 
 // * convert to string and safe to storage_key
 function onInputStorage(e) {
@@ -21,10 +21,10 @@ function onInputStorage(e) {
 
 // * work with button submit
 function onFormSubmit(evt) {
-  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+  
   // * 1 add prevent default
   evt.preventDefault();
-
+  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
 // *  check if some input filled if not warning
   const formElements = evt.currentTarget.elements;
   const emailValue = formElements.email.value;
@@ -41,8 +41,11 @@ function onFormSubmit(evt) {
 // *  get from local storage and receive variables to names
 function populateTextarea() {
   const savedStorageInputs = localStorage.getItem(STORAGE_KEY);
+  const parseMessage = JSON.parse(savedStorageInputs);
+
   if (savedStorageInputs) {
-    refs.inputFormEmail.value = JSON.parse(savedStorageInputs).email;
-    refs.inputFormMessage.value = JSON.parse(savedStorageInputs).message;
+    refs.inputFormEmail.value = parseMessage.email || '';
+    refs.inputFormMessage.value = parseMessage.message|| '';
   };
 };
+
