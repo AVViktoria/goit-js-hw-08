@@ -25,6 +25,7 @@ function onFormSubmit(evt) {
   // * 1 add prevent default
   evt.preventDefault();
   console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+  
 // *  check if some input filled if not warning
   const formElements = evt.currentTarget.elements;
   const emailValue = formElements.email.value;
@@ -44,8 +45,22 @@ function populateTextarea() {
   const parseMessage = JSON.parse(savedStorageInputs);
 
   if (savedStorageInputs) {
-    refs.inputFormEmail.value = parseMessage.email || '';
+    refs.inputFormEmail.value = parseMessage.email || ''; 
     refs.inputFormMessage.value = parseMessage.message|| '';
-  };
-};
+  
 
+    // console.log(refs.inputFormEmail.value);
+    // console.log(refs.inputFormMessage.value);
+  // console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+// refs.inputFormEmail.addEventListener('input', () => {
+//           localStorage.setItem(savedStorageInputs, refs.inputFormEmail.value);
+//       });
+//   refs.inputFormMessage.addEventListener('input', () => {     
+//           localStorage.setItem(savedStorageInputs, refs.inputFormMessage.value);
+//       });
+    };  
+  
+
+      
+    // localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
+};
