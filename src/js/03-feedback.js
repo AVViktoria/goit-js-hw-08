@@ -48,7 +48,7 @@ function populateTextarea() {
     refs.inputFormEmail.value = parseMessage.email || ''; 
     refs.inputFormMessage.value = parseMessage.message|| '';
 
-// localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
+localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
  
 }}
 
