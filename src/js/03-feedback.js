@@ -25,13 +25,13 @@ function onFormSubmit(evt) {
 console.log(inputStorage); 
  evt.preventDefault();
 
-// // *  check if some input filled if not warning
-//   const formElements = evt.currentTarget.elements;
-//   const emailValue = formElements.email.value;
-//   const messageValue = formElements.message.value;
-//   if (emailValue === '' || messageValue === '') {
-//     alert('Все поля ввода должны быть заполнены. Исправьте, пожалуйста.');
-//   };
+// *  check if some input filled if not warning
+  const formElements = evt.currentTarget.elements;
+  const emailValue = formElements.email.value;
+  const messageValue = formElements.message.value;
+  if (emailValue === '' || messageValue === '') {
+    alert('Все поля ввода должны быть заполнены. Исправьте, пожалуйста.');
+  };
 
 // *  clear all fields
   evt.currentTarget.reset();
@@ -48,7 +48,5 @@ function populateTextarea() {
     inputStorage = JSON.parse(savedStorageInputs);
     refs.inputFormEmail.value = inputStorage.email || '';
     refs.inputFormMessage.value = inputStorage.message|| '';
-
-// localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
  
 }}
