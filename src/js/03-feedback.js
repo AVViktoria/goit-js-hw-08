@@ -22,16 +22,16 @@ function onInputStorage(e) {
 function onFormSubmit(evt) {
    
   // * 1 add prevent default
-console.log(JSON.parse(localStorage.getItem(STORAGE_KEY))); 
+console.log(inputStorage); 
  evt.preventDefault();
 
-// *  check if some input filled if not warning
-  const formElements = evt.currentTarget.elements;
-  const emailValue = formElements.email.value;
-  const messageValue = formElements.message.value;
-  if (emailValue === '' || messageValue === '') {
-    alert('Все поля ввода должны быть заполнены. Исправьте, пожалуйста.');
-  };
+// // *  check if some input filled if not warning
+//   const formElements = evt.currentTarget.elements;
+//   const emailValue = formElements.email.value;
+//   const messageValue = formElements.message.value;
+//   if (emailValue === '' || messageValue === '') {
+//     alert('Все поля ввода должны быть заполнены. Исправьте, пожалуйста.');
+//   };
 
 // *  clear all fields
   evt.currentTarget.reset();
@@ -43,25 +43,12 @@ console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
 function populateTextarea() {
 
   const savedStorageInputs = localStorage.getItem(STORAGE_KEY)
-  const parseMessage = JSON.parse(savedStorageInputs);
-  if (parseMessage) {
-    refs.inputFormEmail.value = parseMessage.email || ''; 
-    refs.inputFormMessage.value = parseMessage.message|| '';
+  // const parseMessage = JSON.parse(savedStorageInputs);
+  if (savedStorageInputs) {
+    inputStorage = JSON.parse(savedStorageInputs);
+    refs.inputFormEmail.value = inputStorage.email || '';
+    refs.inputFormMessage.value = inputStorage.message|| '';
 
-localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
+// localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
  
 }}
-
-
-    // console.log(refs.inputFormEmail.value);
-    // console.log(refs.inputFormMessage.value);
-  // console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
-// refs.inputFormEmail.addEventListener('input', () => {
-//           localStorage.setItem(savedStorageInputs, refs.inputFormEmail.value);
-//       });
-//   refs.inputFormMessage.addEventListener('input', () => {     
-//           localStorage.setItem(savedStorageInputs, refs.inputFormMessage.value);
-//       });
-    // };  
- 
-    // localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
