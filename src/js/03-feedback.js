@@ -1,17 +1,16 @@
 import throttle from 'lodash.throttle';
 
 const STORAGE_KEY = 'feedback-form-state';
-const inputStorage = {};
+let inputStorage = {};
 const refs = {
   inputFormFeedback: document.querySelector('.feedback-form'),
   inputFormEmail: document.querySelector('[type="email"]'),
   inputFormMessage: document.querySelector('[name="message"]'),
   inputFormSubmitBtn: document.querySelector('[type="submit"]'),
 };
-
+populateTextarea();
 refs.inputFormFeedback.addEventListener('submit', onFormSubmit);
 refs.inputFormFeedback.addEventListener('input', throttle(onInputStorage, 500));
-populateTextarea();
 
 // * convert to string and safe to storage_key
 function onInputStorage(e) {
@@ -21,11 +20,11 @@ function onInputStorage(e) {
 
 // * work with button submit
 function onFormSubmit(evt) {
-   console.log(JSON.parse(localStorage.getItem(STORAGE_KEY))); 
+   
   // * 1 add prevent default
-  evt.preventDefault();
+console.log(JSON.parse(localStorage.getItem(STORAGE_KEY))); 
+ evt.preventDefault();
 
-  
 // *  check if some input filled if not warning
   const formElements = evt.currentTarget.elements;
   const emailValue = formElements.email.value;
@@ -37,27 +36,21 @@ function onFormSubmit(evt) {
 // *  clear all fields
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
+  inputStorage = {};
 };
 
 // *  get from local storage and receive variables to names
 function populateTextarea() {
+
   const savedStorageInputs = localStorage.getItem(STORAGE_KEY)
   const parseMessage = JSON.parse(savedStorageInputs);
   if (parseMessage) {
     refs.inputFormEmail.value = parseMessage.email || ''; 
-    refs.inputFormMessage.value = parseMessage.message|| '';}
+    refs.inputFormMessage.value = parseMessage.message|| '';
 
-
-
-
-  if (parseMessage?.email) {
-    refs.inputFormEmail.value = parseMessage.email }
-    if (parseMessage?.message) {
-      refs.inputFormMessage.value = parseMessage.message }
-    
 localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
  
-}
+}}
 
     // console.log(refs.inputFormEmail.value);
     // console.log(refs.inputFormMessage.value);
@@ -69,8 +62,5 @@ localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
 //           localStorage.setItem(savedStorageInputs, refs.inputFormMessage.value);
 //       });
     // };  
-  
-
-      
+ 
     // localStorage.setItem(STORAGE_KEY, JSON.stringify(inputStorage));
-
