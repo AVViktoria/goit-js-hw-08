@@ -43,7 +43,6 @@ console.log(inputStorage);
 function populateTextarea() {
 
   const savedStorageInputs = localStorage.getItem(STORAGE_KEY)
-  // const parseMessage = JSON.parse(savedStorageInputs);
   if (savedStorageInputs) {
     inputStorage = JSON.parse(savedStorageInputs);
     refs.inputFormEmail.value = inputStorage.email || '';
