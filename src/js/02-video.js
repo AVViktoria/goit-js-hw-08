@@ -18,3 +18,4 @@ const savedVideoStorage = localStorage.getItem(PLAYER_KEY);
 if (savedVideoStorage) {
   player.setCurrentTime(savedVideoStorage);
 }; 
+
